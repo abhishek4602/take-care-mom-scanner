@@ -8,7 +8,7 @@ import {  ref, set } from "firebase/database";
 //import f from "firebase/firestore";
 import { getFirestore } from "firebase/firestore"
 import { doc, setDoc } from "firebase/firestore";
-import img1 from '../assets/1.png';
+import img1 from '../assets/1.jpeg';
 import img2 from '../assets/2.png';
 import img3 from '../assets/3.png';
 import img4 from '../assets/4.png';
