@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
  import { useState,useEffect } from 'react';
 import Element from '../Upload/Element.js';
+import Add from '../Upload/AddNew.js';
  import { createWorker } from 'tesseract.js';
  import Tesseract from 'tesseract.js';
  import { collection, getDocs } from "firebase/firestore"; 
@@ -29,7 +30,7 @@ export default function Upload(props) {
     const menuElements=safetyIndex
     .map((c,i)=>   
   
-    <Element e={c} ></Element>); 
+    <Add e={c} ></Add>); 
 
   //var safetyIndex=[];
   
@@ -61,7 +62,7 @@ const handleAvg= (array) =>{
     console.log('finalscore '+temp)
 }
 var m=[];
-	const handleSubmission = () => {
+	const addNewData = () => {
       //  console.log('data'+data);
         Tesseract.recognize(
             selectedFile,
@@ -100,6 +101,46 @@ var m=[];
          // .then(handleAvg(safetyIndex))
           //)
 	};
+  const handleSubmission = () => {
+    //  console.log('data'+data);
+      Tesseract.recognize(
+          selectedFile,
+          'eng',
+          { logger: m => console.log(m) }
+        ).then(({ data: { text } }) => {
+   m  =    text.split(',');
+   //console.log(m);
+  // console.log('data1'+data[0].id);
+     m.forEach(element=> {
+      data.forEach(d=>{
+      //  console.log(((d.name).toLowerCase()).trim()+' '+((element).toLowerCase()).trim());
+          if(((d.name).toLowerCase()).trim()===((element).toLowerCase()).trim())
+          {
+            s.push(d);
+            //safetyIndex.push(parseInt(d.safetyIndex));
+
+           
+            console.log('match found');
+          }
+      })
+
+     
+  })
+  console.log(s);
+  setSafetyIndex(s);
+          
+          console.log('data: ' + text);
+          
+          console.log('safetyIndex'+safetyIndex)
+       // check   handleAvg(safetyIndex)
+        }).then(
+          console.log('safetyIndex'+safetyIndex)
+      // handleAvg(safetyIndex)
+        )
+       // .then(handleAvg(safetyIndex))
+        //)
+};
+
 
     const getData= async()=>{
         const querySnapshot = await getDocs(collection(db, "list"));
@@ -159,7 +200,8 @@ querySnapshot.forEach((doc) => {
              
             
             </div>
-            <button style={{width:"100px",margin:"auto"}}onClick={handleSubmission}>Submit</button>
+            <button style={{width:"100px",margin:"auto"}}onClick={handleSubmission}>View Safety index</button>
+            <button style={{width:"100px",margin:"auto"}}onClick={addNewData}>Scan and Add</button>
             
             {/* <div style={{margin:"auto"}}>
             {getComponent(finalscore)}
