@@ -120,7 +120,7 @@ const AddNew=(props)=>
            <div className="card_body_res" style={{display:"table-row"}}>
                <label style={{display:"table-cell"}}>Name: </label>&nbsp; 
                {/* <label style={{height:"20px"}}><b>{props.e.name}</b></label> */}
-               <input type="text" defaultValue={props.e.name} style={{height:"20px",width:"200px",display:"table-cell"}} onChange={(e)=>{setName(e.target.value)}}/>
+               <input type="text" defaultValue={props.e} style={{height:"20px",width:"200px",display:"table-cell"}} onChange={(e)=>{setName(e.target.value)}}/>
                </div> 
              
               

@@ -25,12 +25,17 @@ export default function Upload(props) {
     const [selectedFile, setSelectedFile] = useState();
 	const [isFilePicked, setIsFilePicked] = useState(false);
   const [safetyIndex, setSafetyIndex] = useState([]);
+  const [d, setD] = useState([]);
     const [data, setData] = useState([]);
     var y=[1,2,3];
-    const menuElements=safetyIndex
+    const menuElements=d
     .map((c,i)=>   
   
     <Add e={c} ></Add>); 
+    const safetyElements=safetyIndex
+    .map((c,i)=>   
+  
+    <Element e={c} ></Element>); 
 
   //var safetyIndex=[];
   
@@ -62,6 +67,7 @@ const handleAvg= (array) =>{
     console.log('finalscore '+temp)
 }
 var m=[];
+var p=[];
 	const addNewData = () => {
       //  console.log('data'+data);
         Tesseract.recognize(
@@ -73,22 +79,23 @@ var m=[];
      //console.log(m);
     // console.log('data1'+data[0].id);
        m.forEach(element=> {
-        data.forEach(d=>{
-        //  console.log(((d.name).toLowerCase()).trim()+' '+((element).toLowerCase()).trim());
-            if(((d.name).toLowerCase()).trim()===((element).toLowerCase()).trim())
-            {
-              s.push(d);
-              //safetyIndex.push(parseInt(d.safetyIndex));
+p.push(element);
+        // data.forEach(d=>{
+        // //  console.log(((d.name).toLowerCase()).trim()+' '+((element).toLowerCase()).trim());
+        //     if(((d.name).toLowerCase()).trim()===((element).toLowerCase()).trim())
+        //     {
+        //       s.push(d);
+        //       //safetyIndex.push(parseInt(d.safetyIndex));
 
              
-              console.log('match found');
-            }
-        })
+        //       console.log('match found');
+        //     }
+        // })
 
        
     })
-    console.log(s);
-    setSafetyIndex(s);
+    console.log("pP"+p);
+    setD(p);
             
             console.log('data: ' + text);
             
@@ -112,6 +119,7 @@ var m=[];
    //console.log(m);
   // console.log('data1'+data[0].id);
      m.forEach(element=> {
+       e.push(element);
       data.forEach(d=>{
       //  console.log(((d.name).toLowerCase()).trim()+' '+((element).toLowerCase()).trim());
           if(((d.name).toLowerCase()).trim()===((element).toLowerCase()).trim())
@@ -222,6 +230,7 @@ querySnapshot.forEach((doc) => {
         })
       } */}
       {menuElements}
+      {safetyElements}
       </div>   
        
           
