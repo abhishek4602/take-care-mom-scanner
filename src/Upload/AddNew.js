@@ -104,6 +104,7 @@ const AddNew=(props)=>
                     casNumber: cas,
             }
             );
+            alert("Element added successfully!");
 
     }
     else
